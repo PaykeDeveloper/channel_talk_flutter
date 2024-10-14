@@ -50,6 +50,7 @@ public class ChannelTalkFlutterPlugin implements FlutterPlugin, MethodCallHandle
   private ChannelTalkFlutterHandler channelTalkEventHandler;
 
   public static void registerWith(Application application) {
+    ChannelIO.initialize(application);
   }
 
   @Override
@@ -60,10 +61,10 @@ public class ChannelTalkFlutterPlugin implements FlutterPlugin, MethodCallHandle
     context = flutterPluginBinding.getApplicationContext();
     channelTalkEventHandler = new ChannelTalkFlutterHandler(channel);
 
-    try {
-      ChannelIO.initialize((Application) context);
-    } catch (Exception e) {
-    }
+//    try {
+//      ChannelIO.initialize((Application) context);
+//    } catch (Exception e) {
+//    }
   }
 
   @Override
