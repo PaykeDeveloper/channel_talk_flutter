@@ -7,6 +7,8 @@ import io.flutter.plugin.common.MethodChannel;
 
 import java.util.HashMap;
 import java.util.Map;
+import android.os.Handler;
+import android.os.Looper;
 
 class ChannelTalkFlutterHandler implements ChannelPluginListener {
     private MethodChannel channel;
@@ -31,7 +33,14 @@ class ChannelTalkFlutterHandler implements ChannelPluginListener {
     }
 
     @Override
+    @Deprecated
     public void onBadgeChanged(int i) {
+        Map<String, Object> arguments = new HashMap<>();
+        arguments.put("count", i);
+        
+        new Handler(Looper.getMainLooper()).post(() -> {
+            channel.invokeMethod("onBadgeChanged", arguments);
+        });
     }
 
     @Override
