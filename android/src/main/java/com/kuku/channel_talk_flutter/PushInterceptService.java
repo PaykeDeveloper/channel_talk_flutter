@@ -7,6 +7,7 @@ import android.content.Intent;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.util.Log;
 import java.util.Map;
+import java.util.HashMap;
 
 public class PushInterceptService extends FirebaseMessagingService {
     private static final String TAG = "PushInterceptService";
@@ -23,7 +24,7 @@ public class PushInterceptService extends FirebaseMessagingService {
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
 
-        Map message = remoteMessage.getData();
+        Map<String, String> message = remoteMessage.getData();
 
         if (ChannelIO.isChannelPushNotification(message)) {
             Log.d(TAG, "Channel Talk message received");
